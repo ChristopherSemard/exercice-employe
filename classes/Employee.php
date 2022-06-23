@@ -9,8 +9,9 @@ class Employee
     public int $wage;
     public string $department;
     public Agency $agency;
+    public array $children;
 
-    public function __construct($lastname, $firstname, $hiringDate, $role, $wage, $department, $agency)
+    public function __construct($lastname, $firstname, $hiringDate, $role, $wage, $department, $agency, $children)
     {
         $this->lastname = $lastname;
         $this->firstname = $firstname;
@@ -19,6 +20,7 @@ class Employee
         $this->wage = $wage;
         $this->department = $department;
         $this->agency = $agency;
+        $this->children = $children;
     }
 
     public function getHiringYears() {
@@ -39,6 +41,29 @@ class Employee
     public function verifyVacationVouchers() {
         if($this->getHiringYears() > 1){
             return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function verifyChristmasVouchers() {
+        if(count($this->children)>0){
+            $totalVoucher = 0;
+
+            foreach ($this->children as $key => $child) {
+                if ($child <= 10) {
+                    $totalVoucher += 20;
+                }
+                else if ($child > 10 && $child <= 15) {
+                    $totalVoucher += 30;
+                }
+                else if ($child > 15 && $child <= 18) {
+                    $totalVoucher += 50;
+                }
+            }
+
+            return $totalVoucher == 0 ?  false : $totalVoucher;
         }
         else{
             return false;
