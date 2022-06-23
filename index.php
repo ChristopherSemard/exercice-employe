@@ -2,6 +2,7 @@
 
 require_once('./classes/Agency.php');
 require_once('./classes/Employee.php');
+require_once('./classes/Director.php');
 
 // Agences
 $agency1 = new Agency('Agency 1', 'Address 1', '76000', 'Rouen', 'Restaurant');
@@ -11,6 +12,7 @@ $agency2 = new Agency('Agency 2', 'Address 1', '75000', 'Paris', 'Tickets restau
 $agenciesTable = array($agency1, $agency2);
 
 // Employés
+$director = new Director("Chabot", "David", "1/28/2004", "Directeur", 25, "Direction", $agency1, [12,5,0]);
 $employee1 = new Employee("Martin", "Roger", "2/10/2000", "Commercial", 25, "Commercial", $agency1, [25,10,5]);
 $employee2 = new Employee("Lafond", "Bruce", "6/18/2015", "Comptable", 18, "Comptabilité", $agency1, [0]);
 $employee3 = new Employee("Colin", "Maxence", "11/28/2010", "Commercial", 22, "Commercial", $agency2, [8,2]);
@@ -18,7 +20,7 @@ $employee4 = new Employee("Colin", "Arthur", "5/12/2022", "Directeur RH", 35, "A
 $employee5 = new Employee("Bordeaux", "Sidney", "12/30/2008", "Gardien de nuit", 15, "Securité", $agency2, [16,14,5,5,2]);
 
 // Tableau des employés
-$employeesTable = array($employee1, $employee2, $employee3, $employee4, $employee5);
+$employeesTable = array($employee1, $employee2, $employee3, $employee4, $employee5, $director);
 
 
 
@@ -26,19 +28,18 @@ $employeesTable = array($employee1, $employee2, $employee3, $employee4, $employe
 // print_r("L'employé a été embauché il y a " .$employee1->getHiringYears(). " ans.");
 
 // QUESTION 3
-// sendBonus($employeesTable);
-
-// function sendBonus($employeesTable){
-//     $today = new DateTime();
-//     if($today->format('d/m') == "23/06"){
-//         foreach ($employeesTable as $key => $employee) {
-//             print_r("\n[VIREMENT BANCAIRE] " .$employee->getAnnualBonus(). "€ vers " .$employee->firstname." " .$employee->lastname);
-//         }
-//     }
-//     else {
-//         print_r("\nCe n'est pas le jour des primes");
-//     }
-// }
+sendBonus($employeesTable);
+function sendBonus($employeesTable){
+    $today = new DateTime();
+    if($today->format('d/m') == "23/06"){
+        foreach ($employeesTable as $key => $employee) {
+            print_r("\n[VIREMENT BANCAIRE] " .$employee->getAnnualBonus(). "€ vers " .$employee->firstname." " .$employee->lastname);
+        }
+    }
+    else {
+        print_r("\nCe n'est pas le jour des primes");
+    }
+}
 
 // QUESTION 4
 // Afficher nombre employés
@@ -78,15 +79,28 @@ $employeesTable = array($employee1, $employee2, $employee3, $employee4, $employe
 // }
 
 // QUESTION 8
-foreach ($employeesTable as $key => $employee) {
-    $totalVoucher = $employee->verifyChristmasVouchers() ;
-    $totalVoucher
-    ? 
-    print_r("\n".$employee->firstname." " .$employee->lastname. " a le droit aux chèques Noël pour un motant de ". $totalVoucher."€.")
-    :
-    print_r("\n".$employee->firstname." " .$employee->lastname. " n'a pas le droit aux chèques Noël.");
-}
+// foreach ($employeesTable as $key => $employee) {
+//     $totalVoucher = $employee->verifyChristmasVouchers() ;
+//     $totalVoucher
+//     ? 
+//     print_r("\n".$employee->firstname." " .$employee->lastname. " a le droit aux chèques Noël pour un motant de ". $totalVoucher."€.")
+//     :
+//     print_r("\n".$employee->firstname." " .$employee->lastname. " n'a pas le droit aux chèques Noël.");
+// }
 
+// QUESTION 9
+
+// FONCTION POUR DIRECTEUR SEUL MAIS AUSSI IMPLEMENTE A LA QUESTION 2
+// sendBonus($director);
+// function sendBonus($director){
+//     $today = new DateTime();
+//     if($today->format('d/m') == "23/06"){
+//             print_r("\n[VIREMENT BANCAIRE] " .$director->getAnnualBonus(). "€ vers " .$director->firstname." " .$director->lastname);
+//     }
+//     else {
+//         print_r("\nCe n'est pas le jour des primes");
+//     }
+// }
 
 
 
