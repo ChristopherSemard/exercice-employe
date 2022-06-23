@@ -14,7 +14,7 @@ $agenciesTable = array($agency1, $agency2);
 $employee1 = new Employee("Martin", "Roger", "2/10/2000", "Commercial", 25, "Commercial", $agency1);
 $employee2 = new Employee("Lafond", "Bruce", "6/18/2015", "Comptable", 18, "Comptabilité", $agency1);
 $employee3 = new Employee("Colin", "Maxence", "11/28/2010", "Commercial", 22, "Commercial", $agency2);
-$employee4 = new Employee("Colin", "Arthur", "5/12/2019", "Directeur RH", 35, "Administration", $agency1);
+$employee4 = new Employee("Colin", "Arthur", "5/12/2022", "Directeur RH", 35, "Administration", $agency1);
 $employee5 = new Employee("Bordeaux", "Sidney", "12/30/2008", "Gardien de nuit", 15, "Securité", $agency2);
 
 // Tableau des employés
@@ -66,6 +66,15 @@ $employeesTable = array($employee1, $employee2, $employee3, $employee4, $employe
 // }
 
 
+// QUESTION 7
+foreach ($employeesTable as $key => $employee) {
+    $employee->verifyVacationVouchers() 
+    ? 
+    print_r("\n".$employee->firstname." " .$employee->lastname. " a le droit au chèques vacances.")
+    :
+    print_r("\n".$employee->firstname." " .$employee->lastname. " n'a pas le droit au chèques vacances.");
+
+}
 
 
 

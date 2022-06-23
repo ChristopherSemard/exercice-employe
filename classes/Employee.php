@@ -36,12 +36,13 @@ class Employee
         return $annualBonus;
     }
 
-    public function verify() {
-        $hiringYears = $this->getHiringYears();
-        $baseBonus = $this->wage * 1000 * 0.05;
-        $seniorityBonus = $hiringYears * ($this->wage * 1000 *0.02);
-        $annualBonus = $baseBonus + $seniorityBonus;
-        return $annualBonus;
+    public function verifyVacationVouchers() {
+        if($this->getHiringYears() > 1){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }
